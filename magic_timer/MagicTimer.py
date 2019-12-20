@@ -20,7 +20,7 @@ class MagicTimer:
     def time_elapsed(self):
         "Return time elapsed in days, hours, minutes, seconds, milliseconds"
         delta = self.delta()
-        
+
         days = int(delta / SECS_IN_DAY)
         remainder = delta - days * SECS_IN_DAY
 
@@ -39,10 +39,11 @@ class MagicTimer:
         return days, hours, minutes, seconds, milliseconds
 
     def __str__(self):
-        "Return time elapsed in format: days:hours:minutes:seconds:milliseconds"
+        "Return time elapsed in: days:hours:minutes:seconds:milliseconds"
         days, hours, minutes, seconds, milliseconds = self.time_elapsed()
 
-        return "{}:{:02d}:{:02d}:{:02d}:{:03d}".format(days, hours, minutes, seconds, milliseconds)
+        return "{}:{:02d}:{:02d}:{:02d}:{:03d}".format(
+            days, hours, minutes, seconds, milliseconds)
 
     def __repr__(self):
         return "{}(t_zero={})".format(__class__.__name__, self.t_zero)
