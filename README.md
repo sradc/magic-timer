@@ -1,6 +1,6 @@
 # magic-timer
 
-[![](https://github.com/sradc/magic-timer/workflows/Python%20package/badge.svg)](https://github.com/sradc/magic-timer/actions)
+[![](https://github.com/sradc/magic-timer/workflows/Python%20package/badge.svg)](https://github.com/sradc/magic-timer/commits/)
 
 
 `pip install magic-timer`
