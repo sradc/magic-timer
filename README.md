@@ -47,4 +47,7 @@ Output is in: days:hours:minutes:seconds:milliseconds
 - See [notebook](https://github.com/sradc/magic-timer/blob/master/magic-timer_nb.ipynb).
 
 
+(Note: this package is tiny, and just uses time.time() to measure time)
+
+
 If you want precision / accuracy, use something like [timeit](https://docs.python.org/3.8/library/timeit.html).
