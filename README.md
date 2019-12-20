@@ -1,5 +1,7 @@
 # magic-timer
 
+![](https://github.com/sradc/magic-timer/workflows/Python%20package/badge.svg)
+
 
 `pip install magic-timer`
 
