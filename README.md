@@ -10,7 +10,7 @@ A simple timer. Conveniently get a rough idea of how long things take.
 
 
 Output is in appropriate unit, rounded to two significant figures. 
-(Note that 3 digit numbers are also rounded to 2 sig figs, e.g. 231 -> 240)
+Note that 3 digit numbers are also rounded to 2 sig figs, e.g. 231 -> 240.
 
 
 #### Use via decorator:
