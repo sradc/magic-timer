@@ -43,6 +43,8 @@ print(timer)
 > 94 milliseconds
 ```
 
+##### Format time in seconds into an appropriate unit, rounded to two sig figs:
+
 ```python
 print(format_output(365*24*60*60))
 print(format_output(2*24*60*60))
