@@ -11,18 +11,18 @@ Conveniently get a rough idea of how long things take.
 #### Use via decorator:
 
 ```python
-from magic_timer import MagicTimer, magic_timer
+from magic_timer import MagicTimer, magic_timer, format_output
 import time
 
 @magic_timer
 def some_slow_function():
-    time.sleep(3)
+    time.sleep(2.75)
 
 some_slow_function()
 ```
 
 ```
-> magic-timer: 'some_slow_function' - 0:00:00:03:000
+> 'some_slow_function' - 2.8 seconds
 ```
 
 
@@ -30,8 +30,8 @@ some_slow_function()
 
 ```python
 def some_slow_function():
-    time.sleep(2)
-
+    time.sleep(90/1000)
+  
 timer = MagicTimer()
 
 some_slow_function()
@@ -40,10 +40,19 @@ print(timer)
 ```
 
 ```
-> 0:00:00:02:000
+> 94 milliseconds
 ```
 
-Output is in: days:hours:minutes:seconds:milliseconds
+```python
+print(format_output(365*24*60*60))
+print(format_output(2*24*60*60))
+print(format_output(4.2*60*60))
+print(format_output(3.11*60))
+print(format_output(45.38))
+print(format_output(.334))
+print(format_output(.00008422))
+print(format_output(.0))
+```
 
 See also this [notebook](https://github.com/sradc/magic-timer/blob/master/magic-timer_nb.ipynb).
 

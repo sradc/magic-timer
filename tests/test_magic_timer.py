@@ -8,24 +8,22 @@ def my_slow_function(t):
 
 def test_magic_timer(capsys):
 
-    my_slow_function(2)
+    my_slow_function(1.95)
     captured = capsys.readouterr()
-    assert (captured.out.strip()[:-3] ==
-            "magic-timer: '{}' - 0:00:00:02:"
-            .format(my_slow_function.__name__)), "timing error"
+    assert (captured.out.strip() ==
+            "'{}' - 2.0 seconds"
+            .format(my_slow_function.__name__)), "output does not match: {}".format(captured.out)
 
-    my_slow_function(.5)
+    my_slow_function(1.41)
     captured = capsys.readouterr()
-    assert (captured.out.strip()[:-2] ==
-            "magic-timer: '{}' - 0:00:00:00:5"
-            .format(my_slow_function.__name__)), "timing error"
-
-
-@magic_timer
-def sqr(x):
-    return x*x
+    assert (captured.out.strip() ==
+            "'{}' - 1.5 seconds"
+            .format(my_slow_function.__name__)), "output does not match: {}".format(captured.out)
 
 
 def test_magic_timer_return():
-    assert sqr(5) == 25, "decorated function return error"
+    @magic_timer
+    def sqr(x):
+        return x*x
 
+    assert sqr(5) == 25, "decorated function not returning value"
