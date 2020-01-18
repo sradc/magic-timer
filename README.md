@@ -56,6 +56,17 @@ print(format_output(.00008422))
 print(format_output(.0))
 ```
 
+```
+> 370 days
+> 2.0 days
+> 4.2 hours
+> 3.2 minutes
+> 46 seconds
+> 340 milliseconds
+> 85 microseconds
+> t < 0.05 microseconds
+```
+
 See also this [notebook](https://github.com/sradc/magic-timer/blob/master/magic-timer_nb.ipynb).
 
 This package is tiny. It uses time.time() to measure time. For greater precision & accuracy, you could use something like [timeit](https://docs.python.org/3.8/library/timeit.html).
