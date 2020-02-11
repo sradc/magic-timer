@@ -6,10 +6,19 @@
 `pip install magic-timer`
 
 
-A simple timer. Conveniently get a rough idea of how long things take.
+A simple timer, for conveniently getting a rough idea of how long things take.
 
 
-Output is in appropriate unit, rounded to two significant figures. 
+This is not for precision / accuracy; for that use something like [timeit](https://docs.python.org/3/library/timeit.html). 
+
+
+This package basically just makes timing with time.monotic() fractionally more convenient.
+
+
+This package is not recommended for measuring sub 100 millisecond times.
+
+
+Output is in an appropriate unit, rounded to two significant figures. 
 Note that 3 digit numbers are also rounded to 2 sig figs, e.g. 231 -> 240.
 
 
@@ -45,10 +54,16 @@ print(timer)
 ```
 
 ```
-> 94 milliseconds
+> 95 milliseconds
 ```
 
 
 See also this [notebook](https://github.com/sradc/magic-timer/blob/master/magic-timer_nb.ipynb).
 
-This package is tiny. It uses time.time() to measure time. For greater precision & accuracy, you could use something like [timeit](https://docs.python.org/3.8/library/timeit.html).
+
+The use case: you have a function you want to time, but you don't want to time it multiple times with `timeit`,
+and you don't want to use Jupyter `%%timeit` because `%%timeit` puts the cell into a different scope.
+You can import `magic-timer`, throw it on, and get a rough idea of the elapsed time.
+
+
+This is somewhat of a [pico](https://en.wikipedia.org/wiki/Pico-)-package...

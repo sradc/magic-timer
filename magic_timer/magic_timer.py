@@ -12,12 +12,12 @@ def magic_timer(func):
     @wraps(func)
     def wrapped_function(*args, **kwargs):
         
-        timer = MagicTimer()
+        t = MagicTimer()
 
         y = func(*args, **kwargs)
 
         s = "'{}' -".format(func.__name__)
-        print(s, timer)
+        print(s, t)
 
         return y
 

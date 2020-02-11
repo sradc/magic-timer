@@ -6,18 +6,20 @@ SECS_IN_DAY = 24 * 60 * 60
 SECS_IN_HOUR = 60 * 60
 SECS_IN_MIN = 60
 
+GET_TIME = time.monotonic  # func returns time in secs
 
 class MagicTimer:
 
     def __init__(self, t_zero=None):
+        
         if t_zero:
             self.t_zero = t_zero
         else:
-            self.t_zero = time.time()
+            self.t_zero = GET_TIME()
 
     def delta(self):
         "Return time elapsed in seconds"
-        return time.time() - self.t_zero
+        return GET_TIME() - self.t_zero
 
     def __str__(self):
         "Format self.delta into an appropriately readable string."
