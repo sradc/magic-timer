@@ -29,7 +29,8 @@ class MagicTimer:
         return "{}(t_zero={})".format(__class__.__name__, self.t_zero)
     
     def time_elapsed(self):
-        """
+        """ [Deprecated, superseded by format_output]
+        
         Return elapsed time in -
         days, hours, minutes, seconds, milliseconds, microseconds
         """
@@ -50,7 +51,7 @@ class MagicTimer:
         milliseconds = int(remainder * 1000)
         remainder -= milliseconds / 1000
 
-        microseconds = int(remainder * 1000_000)
+        microseconds = int(remainder * 1000000)
 
         return days, hours, minutes, seconds, milliseconds, microseconds
 
