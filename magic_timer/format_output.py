@@ -9,7 +9,7 @@ e.g. 340 might result from 331.
 import math
 
 UNIT_NAME = ["days", "hours", "minutes", "seconds", "milliseconds", "microseconds"]
-SECS_IN_UNIT = [24*60*60, 60*60, 60, 1, 1./1000, 1./1000_000]
+SECS_IN_UNIT = [24*60*60, 60*60, 60, 1, 1./1000, 1./1000000]
 
 
 def format_output(delta: float) -> str:
