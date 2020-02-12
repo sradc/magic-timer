@@ -12,10 +12,10 @@ A simple timer, for conveniently getting a rough idea of how long things take.
 This is not for precision / accuracy; for that use something like [timeit](https://docs.python.org/3/library/timeit.html). 
 
 
-This package basically just makes timing with time.monotic() fractionally more convenient.
-
-
 This package is not recommended for measuring sub 100 millisecond times.
+
+
+This package basically just makes timing with time.monotonic() fractionally more convenient.
 
 
 Output is in an appropriate unit, rounded to two significant figures. 
