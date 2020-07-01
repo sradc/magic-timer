@@ -1,10 +1,10 @@
 import setuptools
 
-with open("README.md", "r") as fh:
-    LONG_DESCRIPTION = fh.read()
+with open("README.md", "r") as f:
+    LONG_DESCRIPTION = f.read()
 
-with open("VERSION", "r") as fh:
-    VERSION = fh.read()
+with open("VERSION", "r") as f:
+    VERSION = f.read()
 
 setuptools.setup(
     name="magic-timer",
@@ -21,6 +21,5 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.5',
+    python_requires='>=3.6',
 )
-
