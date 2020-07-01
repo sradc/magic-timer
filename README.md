@@ -44,7 +44,7 @@ do_stuff()
 > `do_stuff` ran in 1.9 seconds.
 ```
 
-#### The use case for this package: 
+#### The use case for this package:
 
 You have something you want to time, but you don't want to time it multiple times with [timeit](https://docs.python.org/3/library/timeit.html).
 
@@ -52,4 +52,4 @@ You also don't want to use [Jupyter's `%%timeit`](https://ipython.readthedocs.io
 
 You can import `magic-timer`, throw it in, and get a rough idea of the time taken.
 
-You could of course use time.monotonic directly, but it's not quite as neat.
+It's slightly neater than using time.monotonic directly.
