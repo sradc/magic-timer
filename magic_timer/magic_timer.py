@@ -9,7 +9,7 @@ class MagicTimer:
     >>> t = MagicTimer()
     >>> do_stuff()
     >>> print(t)
-    0.5 seconds
+    1.5 seconds
     '''
 
     def __init__(self, t_zero=None):
