@@ -1,9 +1,8 @@
-[This small project was (partially) made so I could learn about distributing Python packages.]
-
 ### Building ###
+https://packaging.python.org/tutorials/packaging-projects/
+
+pytest
 
 python setup.py sdist bdist_wheel
 
 twine upload dist/*
-
-https://packaging.python.org/tutorials/packaging-projects/
