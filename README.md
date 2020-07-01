@@ -50,6 +50,4 @@ You have something you want to time, but you don't want to time it multiple time
 
 You also don't want to use [Jupyter's `%%timeit`](https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-timeit) because it puts the cell into a different scope.
 
-You can import `magic-timer`, throw it in, and get a rough idea of the time taken.
-
-It's slightly neater than using time.monotonic directly.
+You can import `magic-timer`, throw it in, and get a rough idea of the time taken. (It's slightly neater than using time.monotonic directly.)
