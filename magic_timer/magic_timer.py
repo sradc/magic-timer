@@ -1,24 +1,49 @@
+import time
 from functools import wraps
-from magic_timer.MagicTimer import MagicTimer
+from magic_timer.format_seconds import format_seconds
 
 
-def magic_timer(func):
-    """
-    Use this decorator to turn a function into a timed function.
-    When the decorated function has finished running,
-    its runtime will be printed.
-    """
+class MagicTimer:
+    '''Time things.
 
+    >>> t = MagicTimer()
+    >>> do_stuff()
+    >>> print(t)
+    0.5 seconds
+    '''
+
+    def __init__(self, t_zero=None):
+        self.t_zero = t_zero if t_zero else _get_time()
+
+    def time_elapsed(self):
+        return _get_time() - self.t_zero
+
+    def __str__(self):
+        return format_seconds(self.time_elapsed())
+
+    def __repr__(self):
+        return f'{__class__.__name__}(t_zero={self.t_zero})'
+
+
+def ftimer(func):
+    '''Use to time a function.
+
+    @ftimer
+    def myfunc():
+        ...
+
+    >>> myfunc()
+
+    `myfunc` ran in 4.6 seconds.
+    '''
     @wraps(func)
     def wrapped_function(*args, **kwargs):
-        
-        t = MagicTimer()
-
+        timer = MagicTimer()
         y = func(*args, **kwargs)
-
-        s = "'{}' -".format(func.__name__)
-        print(s, t)
-
+        print(f'`{func.__name__}` ran in {timer}.')
         return y
-
     return wrapped_function
+
+
+def _get_time():
+    return time.monotonic()
