@@ -2,68 +2,54 @@
 
 [![](https://github.com/sradc/magic-timer/workflows/Python%20package/badge.svg)](https://github.com/sradc/magic-timer/commits/)
 
-
 `pip install magic-timer`
 
+Conveniently get a rough idea of how long things take. 
 
-A simple timer, for conveniently getting a rough idea of how long things take.
-
-
-This is not for precision / accuracy; for that use something like [timeit](https://docs.python.org/3/library/timeit.html). 
+This is a light wrapper around the standard library's [time.monotonic](https://docs.python.org/3/library/time.html#time.monotonic). 
 
 
-This package is not recommended for measuring sub 100 millisecond times.
+## How to use:
 
-
-This package basically just makes timing with time.monotonic() fractionally more convenient.
-
-
-Output is in an appropriate unit, rounded to two significant figures. 
-Note that 3 digit numbers are also rounded to 2 sig figs, e.g. 231 -> 240.
-
-
-#### Use via decorator:
+## Use via `MagicTimer` object:
 
 ```python
-from magic_timer import MagicTimer, magic_timer
-import time
+from magic_timer import MagicTimer
 
-@magic_timer
-def some_slow_function():
-    time.sleep(2.75)
+def do_stuff():
+    [i*i for i in range(5_000_000)]
 
-some_slow_function()
-```
-
-```
-> 'some_slow_function' - 2.8 seconds
-```
-
-
-#### Use via MagicTimer object:
-
-```python
-def some_slow_function():
-    time.sleep(90/1000)
-  
 timer = MagicTimer()
-
-some_slow_function()
-
-print(timer)
+do_stuff()
+print('Stuff took', timer)
 ```
 
 ```
-> 95 milliseconds
+> Stuff took 455 milliseconds
 ```
 
+## Use via `ftimer` decorator:
 
-See also this [notebook](https://github.com/sradc/magic-timer/blob/master/magic-timer_nb.ipynb).
+```python
+from magic_timer import ftimer
 
+@ftimer
+def do_stuff():
+    [i*i for i in range(20_000_000)]
 
-The use case: you have a function you want to time, but you don't want to time it multiple times with `timeit`,
-and you don't want to use Jupyter `%%timeit` because `%%timeit` puts the cell into a different scope.
-You can import `magic-timer`, throw it on, and get a rough idea of the elapsed time.
+do_stuff()
+```
 
+```
+> `do_stuff` ran in 1.9 seconds.
+```
 
-This is somewhat of a [pico](https://en.wikipedia.org/wiki/Pico-)-package...
+#### The use case for this package: 
+
+You have something you want to time, but you don't want to time it multiple times with [timeit](https://docs.python.org/3/library/timeit.html).
+
+You also don't want to use [Jupyter's `%%timeit`](https://ipython.readthedocs.io/en/stable/interactive/magics.html#magic-timeit) because it puts the cell into a different scope.
+
+You can import `magic-timer`, throw it in, and get a rough idea of the time taken.
+
+You could of course use time.monotonic directly, but it's not quite as neat.
