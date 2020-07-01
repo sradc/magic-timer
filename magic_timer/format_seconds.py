@@ -21,7 +21,7 @@ def format_seconds(seconds):
         value, unit = _convert_to_appropriate_unit(seconds)
     except ValueError:
         return f't < 1 {TIME_UNITS[-1][0]}'
-    value = _round_appropriately(value, unit)
+    value = _round_appropriately(value)
     return f'{value} {unit}'
 
 
@@ -34,7 +34,7 @@ def _convert_to_appropriate_unit(seconds):
     raise ValueError('`seconds` is smaller than the smallest time unit.')
 
 
-def _round_appropriately(value, unit):
+def _round_appropriately(value):
     '''Round to at most 1 decimal place.
 
     Round with math.ceil, since generally better to overestimate the time taken.
