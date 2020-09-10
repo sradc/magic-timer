@@ -3,12 +3,9 @@ import setuptools
 with open("README.md", "r") as f:
     LONG_DESCRIPTION = f.read()
 
-with open("VERSION", "r") as f:
-    VERSION = f.read()
-
 setuptools.setup(
     name="magic-timer",
-    version=VERSION,
+    version="0.1.1",
     author="Sidney Radcliffe",
     author_email="sidneyradcliffe@gmail.com",
     description="Conveniently get a rough idea of how long things take.",
@@ -21,5 +18,5 @@ setuptools.setup(
         "License :: OSI Approved :: MIT License",
         "Operating System :: OS Independent",
     ],
-    python_requires='>=3.6',
+    python_requires=">=3.6",
 )
