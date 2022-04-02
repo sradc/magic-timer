@@ -5,7 +5,7 @@ with open("README.md", "r") as f:
 
 setuptools.setup(
     name="magic-timer",
-    version="0.1.1",
+    version="0.2.0",
     author="Sidney Radcliffe",
     author_email="sidneyradcliffe@gmail.com",
     description="Conveniently get a rough idea of how long things take.",
