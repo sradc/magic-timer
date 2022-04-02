@@ -13,10 +13,24 @@ class MagicTimer:
     '''
 
     def __init__(self, t_zero=None):
-        self.t_zero = t_zero if t_zero else _get_time()
+        self.t_zero: float = t_zero if t_zero else _get_time()
+        self.t_stopped: float = None
 
     def time_elapsed(self):
-        return _get_time() - self.t_zero
+        if self.t_stopped:
+            return self.t_stopped - self.t_zero
+        else:
+            return _get_time() - self.t_zero
+
+    def stop(self):
+        """Stop the timer."""
+        self.t_stopped = _get_time()
+
+    def __enter__(self):
+        return self
+
+    def __exit__(self, exc_type, exc_val, exc_tb):
+        self.stop()
 
     def __str__(self):
         return format_seconds(self.time_elapsed())

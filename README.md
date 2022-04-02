@@ -11,6 +11,27 @@ This is a light wrapper around the standard library's [time.monotonic](https://d
 
 ## How to use:
 
+## Via context manager:
+
+```python
+from magic_timer import MagicTimer
+
+with MagicTimer() as timer:
+    x = sum(i*i for i in range(100_000))  # do stuff
+
+# Print a nicely formatted string:
+print('Stuff took', timer)
+
+# Or get the elapsed time in seconds:
+time_elapsed = timer.time_elapsed()
+print(time_elapsed)
+```
+
+```
+> Stuff took 8.0 milliseconds
+> 0.007906290999997623
+```
+
 ## Use via `MagicTimer` object:
 
 ```python
@@ -21,6 +42,7 @@ def do_stuff():
 
 timer = MagicTimer()
 do_stuff()
+timer.stop()
 print('Stuff took', timer)
 ```
 
