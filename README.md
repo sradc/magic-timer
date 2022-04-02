@@ -42,12 +42,26 @@ def do_stuff():
 
 timer = MagicTimer()
 do_stuff()
-timer.stop()
 print('Stuff took', timer)
 ```
 
 ```
 > Stuff took 455 milliseconds
+```
+
+To "freeze" the timer, use the stop method:
+
+```python
+from magic_timer import MagicTimer
+
+def do_stuff():
+    [i*i for i in range(5_000_000)]
+
+timer = MagicTimer()
+do_stuff()
+timer.stop()
+print('Stuff took', timer)
+time_elapsed = timer.time_elapsed()
 ```
 
 ## Use via `ftimer` decorator:
@@ -66,7 +80,7 @@ do_stuff()
 > `do_stuff` ran in 1.9 seconds.
 ```
 
-#### The use case for this package:
+### The use case for this package:
 
 You have something you want to time, but you don't want to time it multiple times with [timeit](https://docs.python.org/3/library/timeit.html).
 
