@@ -11,6 +11,12 @@ def sleep(t):
     time.sleep(t)
 
 
+def test_context_manager():
+    with MagicTimer() as timer:
+        sleep(1.92)
+    assert str(timer) == "2.0 seconds", "timing error"
+
+
 def test_MagicTimer():
     timer = MagicTimer()
     sleep(1.92)
