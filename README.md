@@ -11,7 +11,7 @@ This is a light wrapper around the standard library's [time.monotonic](https://d
 
 ## How to use:
 
-## Via context manager:
+## Use via context manager:
 
 ```python
 from magic_timer import MagicTimer
