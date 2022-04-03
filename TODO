@@ -1,4 +1,3 @@
-- Add case as seen in wild, with history, to docs
-- Type hints
-- Improve docstrings 
+- improve docstrings 
 - black commit hook
+- auto semantic release
