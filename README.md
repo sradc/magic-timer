@@ -65,12 +65,11 @@ timer = MagicTimer()
 do_stuff()
 print('Stuff took', timer)
 do_stuff()
-print("Note the timer's still ticking...", timer)
-```
+print("Note the timer's still ticking, unless `.stop()` is called...", timer)```
 
 ```
-Stuff took 200 milliseconds
-Note the timer's still ticking... 380 milliseconds
+Stuff took 210 milliseconds
+Note the timer's still ticking, unless `.stop()` is called... 400 milliseconds
 ```
 
 To pause the timer, use the `stop` method (restart with the `start` method):
