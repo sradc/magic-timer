@@ -1,0 +1,4 @@
+- Add case as seen in wild, with history, to docs
+- Type hints
+- Improve docstrings 
+- black commit hook

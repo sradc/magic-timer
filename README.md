@@ -49,8 +49,8 @@ print(time_elapsed)
 ```
 
 ```
-> Stuff took 8.0 milliseconds
-> 0.007906290999997623
+Stuff took 8.0 milliseconds
+0.007906290999997623
 ```
 
 ## Use via `MagicTimer` object:
@@ -64,10 +64,13 @@ def do_stuff():
 timer = MagicTimer()
 do_stuff()
 print('Stuff took', timer)
+do_stuff()
+print("Note the timer's still ticking...", timer)
 ```
 
 ```
-> Stuff took 455 milliseconds
+Stuff took 200 milliseconds
+Note the timer's still ticking... 380 milliseconds
 ```
 
 To pause the timer, use the `stop` method (restart with the `start` method):
@@ -100,7 +103,7 @@ do_stuff()
 ```
 
 ```
-> `do_stuff` ran in 1.9 seconds.
+`do_stuff` ran in 1.9 seconds.
 ```
 
 ### The use case for this package:
