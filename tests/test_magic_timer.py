@@ -27,6 +27,40 @@ def test_MagicTimer():
     assert str(timer) == "1.1 seconds", "timing error"
 
 
+def test_MagicTimer_stop():
+    timer = MagicTimer()
+    sleep(0.01)
+    timer.stop()
+    t0 = timer.time_elapsed()
+    sleep(0.01)
+    t1 = timer.time_elapsed()
+    assert t0 == t1, "Timer failed to stop"
+
+
+def test_MagicTimer_stop_start():
+    timer = MagicTimer()
+    sleep(0.01)
+    timer.stop()
+    t0 = timer.time_elapsed()
+    sleep(0.01)
+    t1 = timer.time_elapsed()
+    timer.start()
+    sleep(0.01)
+    t2 = timer.time_elapsed()
+    assert t0 == t1, "Timer failed to stop"
+    assert t2 > t1, "Time failed to restart"
+
+
+def test_MagicTimer_history():
+    timer = MagicTimer(history=True)
+    for _ in range(3):
+        sleep(0.01)
+        print(timer)
+    assert len(timer.str_history) == 3, "Incorrect number of times"
+    assert timer.str_history[0] < timer.str_history[1], "Value error"
+    assert timer.str_history[1] < timer.str_history[2], "Value error"
+
+
 def test_ftime(capsys):
     sleep(1.95)
     captured = capsys.readouterr()
