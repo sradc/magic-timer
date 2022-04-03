@@ -1,6 +1,6 @@
 from functools import wraps
 import time
-from typing import Callable, Union
+from typing import Callable, Union, List
 
 from magic_timer.format_seconds import format_seconds
 
@@ -20,7 +20,7 @@ class MagicTimer:
         self.start_time_seconds: float = _get_time()  # when the timer was started
         self.stop_time_seconds: float = None  # when the timer was stopped
         self.stopped_delta_seconds: float = 0  # how long the timer has been stopped
-        self.str_history: Union[list[float], None] = [] if history else None
+        self.str_history: Union[List[float], None] = [] if history else None
 
     def time_elapsed(self) -> float:
         "Return time_elapsed since timer started, in seconds."

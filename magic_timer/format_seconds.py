@@ -1,7 +1,7 @@
 """Turn time in seconds into a readable string.
 """
 import math
-from typing import Union
+from typing import Union, Tuple
 
 TIME_UNITS = (  # Order matters
     ("days", 24 * 60 * 60),
@@ -27,7 +27,7 @@ def format_seconds(seconds: float) -> str:
     return f"{value} {unit}"
 
 
-def _convert_to_appropriate_unit(value_in_seconds: float) -> tuple[float, str]:
+def _convert_to_appropriate_unit(value_in_seconds: float) -> Tuple[float, str]:
     """Convert `value_in_seconds` into an appropriate unit from TIME_UNITS."""
     for unit, seconds_in_unit in TIME_UNITS:
         if value_in_seconds >= seconds_in_unit:
