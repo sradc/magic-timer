@@ -6,10 +6,30 @@
 
 Conveniently get a rough idea of how long things take. 
 
-This is a light wrapper around the standard library's [time.monotonic](https://docs.python.org/3/library/time.html#time.monotonic). 
+This is a light wrapper around the standard library's [time.monotonic](https://docs.python.org/3/library/time.html#time.monotonic). It aims to provide a clean API, and nice output strings.
 
 
 ## How to use:
+
+```python
+from magic_timer import MagicTimer
+
+timer = MagicTimer(history=True)
+for i in range(3):
+    expensive_computation()
+    # Print nicely formatted string:
+    print(f"{i} - elapsed time {timer}")
+
+# Get the elapsed times that were printed:
+print("timer.str_history =", timer.str_history)
+```
+
+```
+0 - elapsed time 510 milliseconds
+1 - elapsed time 1.1 seconds
+2 - elapsed time 1.6 seconds
+timer.str_history = [0.5046274580000158, 1.005028416000016, 1.510260250000016]
+```
 
 ## Use via context manager:
 
@@ -17,7 +37,8 @@ This is a light wrapper around the standard library's [time.monotonic](https://d
 from magic_timer import MagicTimer
 
 with MagicTimer() as timer:
-    x = sum(i*i for i in range(100_000))  # do stuff
+    # do stuff
+    x = sum(i*i for i in range(100_000))
 
 # Print a nicely formatted string:
 print('Stuff took', timer)
@@ -49,7 +70,7 @@ print('Stuff took', timer)
 > Stuff took 455 milliseconds
 ```
 
-To "freeze" the timer, use the stop method:
+To pause the timer, use the `stop` method (restart with the `start` method):
 
 ```python
 from magic_timer import MagicTimer
@@ -62,6 +83,8 @@ do_stuff()
 timer.stop()
 print('Stuff took', timer)
 time_elapsed = timer.time_elapsed()
+other_stuff()
+timer.start()  # continue timing
 ```
 
 ## Use via `ftimer` decorator:
