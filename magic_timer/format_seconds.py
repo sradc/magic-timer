@@ -1,8 +1,7 @@
 """Turn time in seconds into a readable string.
 """
-from __future__ import annotations
-
 import math
+from typing import Union
 
 TIME_UNITS = (  # Order matters
     ("days", 24 * 60 * 60),
@@ -37,7 +36,7 @@ def _convert_to_appropriate_unit(value_in_seconds: float) -> tuple[float, str]:
     raise ValueError("`value_in_seconds` is smaller than the smallest time unit.")
 
 
-def _round_appropriately(value: float, unit: str) -> int | float:
+def _round_appropriately(value: float, unit: str) -> Union[int, float]:
     """Round *up* to 2 significant figures
     (except for unit="days", and value>=100, which is just rounded
     to the nearest whole number).
