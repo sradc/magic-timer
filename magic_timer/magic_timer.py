@@ -1,7 +1,8 @@
 from __future__ import annotations
 
-import time
 from functools import wraps
+import time
+from typing import Callable
 
 from magic_timer.format_seconds import format_seconds
 
@@ -17,13 +18,14 @@ class MagicTimer:
     ```
     """
 
-    def __init__(self, history: bool = False):
+    def __init__(self, history: bool = False) -> None:
         self.start_time_seconds: float = _get_time()  # when the timer was started
         self.stop_time_seconds: float = None  # when the timer was stopped
         self.stopped_delta_seconds: float = 0  # how long the timer has been stopped
         self.str_history: list[float] | None = [] if history else None
 
-    def time_elapsed(self):
+    def time_elapsed(self) -> float:
+        "Return time_elapsed since timer started, in seconds."
         if self.stop_time_seconds:
             return (
                 self.stop_time_seconds
@@ -33,33 +35,33 @@ class MagicTimer:
         else:
             return _get_time() - self.start_time_seconds - self.stopped_delta_seconds
 
-    def stop(self):
+    def stop(self) -> None:
         """Stop the timer."""
         self.stop_time_seconds = _get_time()
 
-    def start(self):
+    def start(self) -> None:
         """Restart a stopped timer."""
         if self.stop_time_seconds:
             self.stopped_delta_seconds += _get_time() - self.stop_time_seconds
             self.stop_time_seconds = None
 
-    def __enter__(self):
+    def __enter__(self) -> MagicTimer:
         return self
 
-    def __exit__(self, exc_type, exc_val, exc_tb):
+    def __exit__(self, exc_type, exc_val, exc_tb) -> None:
         self.stop()
 
-    def __str__(self):
+    def __str__(self) -> str:
         t = self.time_elapsed()
         if not self.str_history is None:
             self.str_history.append(t)
         return format_seconds(t)
 
-    def __repr__(self):
+    def __repr__(self) -> str:
         return f"{__class__.__name__}(t_zero={self.start_time_seconds})"
 
 
-def ftimer(func):
+def ftimer(func: Callable) -> Callable:
     """Use to time a function.
 
     @ftimer
@@ -81,5 +83,5 @@ def ftimer(func):
     return wrapped_function
 
 
-def _get_time():
+def _get_time() -> float:
     return time.monotonic()
