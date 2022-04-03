@@ -65,14 +65,17 @@ timer = MagicTimer()
 do_stuff()
 print('Stuff took', timer)
 do_stuff()
-print("Note the timer's still ticking, unless `.stop()` is called...", timer)```
+print("Note the timer's still ticking, unless `.stop()` is called...", timer)
+```
 
 ```
 Stuff took 210 milliseconds
 Note the timer's still ticking, unless `.stop()` is called... 400 milliseconds
 ```
 
-To pause the timer, use the `stop` method (restart with the `start` method):
+
+
+To pause the timer, use the `stop` method (restart with the `.start()` method). (Note that the context manager automatically calls `.stop()`).
 
 ```python
 from magic_timer import MagicTimer
