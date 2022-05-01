@@ -4,6 +4,19 @@
 
 `pip install magic-timer`
 
+```python
+from magic_timer import MagicTimer
+
+with MagicTimer() as timer:
+    do_stuff()
+
+print('Stuff took', timer)
+```
+
+```
+Stuff took 8.0 milliseconds
+```
+
 Conveniently get a rough idea of how long things take. 
 
 This is a light wrapper around the standard library's [time.monotonic](https://docs.python.org/3/library/time.html#time.monotonic). It aims to provide a clean API, and nice output strings.
@@ -11,33 +24,12 @@ This is a light wrapper around the standard library's [time.monotonic](https://d
 
 ## How to use:
 
-```python
-from magic_timer import MagicTimer
-
-timer = MagicTimer(history=True)
-for i in range(3):
-    expensive_computation()
-    # Print nicely formatted string:
-    print(f"{i} - elapsed time {timer}")
-
-# Get the elapsed times that were printed:
-print("timer.str_history =", timer.str_history)
-```
-
-```
-0 - elapsed time 510 milliseconds
-1 - elapsed time 1.1 seconds
-2 - elapsed time 1.6 seconds
-timer.str_history = [0.5046274580000158, 1.005028416000016, 1.510260250000016]
-```
-
 ## Use via context manager:
 
 ```python
 from magic_timer import MagicTimer
 
 with MagicTimer() as timer:
-    # do stuff
     x = sum(i*i for i in range(100_000))
 
 # Print a nicely formatted string:
@@ -73,8 +65,6 @@ Stuff took 210 milliseconds
 Note the timer's still ticking, unless `.stop()` is called... 400 milliseconds
 ```
 
-
-
 To pause the timer, use the `stop` method (restart with the `.start()` method). (Note that the context manager automatically calls `.stop()`).
 
 ```python
@@ -90,6 +80,28 @@ print('Stuff took', timer)
 time_elapsed = timer.time_elapsed()
 other_stuff()
 timer.start()  # continue timing
+```
+
+Using history, to track multiple timings:
+
+```python
+from magic_timer import MagicTimer
+
+timer = MagicTimer(history=True)
+for i in range(3):
+    expensive_computation()
+    # Print nicely formatted string:
+    print(f"{i} - elapsed time {timer}")
+
+# Get the elapsed times that were printed:
+print("timer.str_history =", timer.str_history)
+```
+
+```
+0 - elapsed time 510 milliseconds
+1 - elapsed time 1.1 seconds
+2 - elapsed time 1.6 seconds
+timer.str_history = [0.5046274580000158, 1.005028416000016, 1.510260250000016]
 ```
 
 ## Use via `ftimer` decorator:
